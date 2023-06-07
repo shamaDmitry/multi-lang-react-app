@@ -5,7 +5,7 @@ import { initReactI18next } from "react-i18next";
 const getCurrentHost =
   import.meta.env.MODE === "development"
     ? "http://localhost:5173"
-    : "https://multi-lang-react-app.vercel.app/";
+    : "https://multi-lang-react-app.vercel.app";
 
 i18n
   .use(i18nBackend)
