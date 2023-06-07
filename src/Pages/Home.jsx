@@ -1,12 +1,19 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const Home = () => {
+  const { t } = useTranslation();
+
   return (
-    <div className='container mx-auto px-4'>
+    <section className='container mx-auto px-4 text-center'>
       <h1 className='text-2xl mb-2'>
-        Multi lang app
+        {t('title')}
       </h1>
-    </div>
+
+      <h2 className="text-xl">
+        {t('label')}
+      </h2>
+    </section>
   );
 }
 

@@ -1,6 +1,10 @@
 import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
-import { LANGUAGES } from "../helpers/constants";
+import {
+  CURRENT_LANG,
+  CURRENT_LANG_KEY,
+  LANGUAGES
+} from "../helpers/constants";
 
 
 const Navigation = () => {
@@ -17,8 +21,12 @@ const Navigation = () => {
     }
   ];
 
+  const lang = localStorage.getItem(CURRENT_LANG_KEY);
+
   const onChangeLang = (e) => {
     const langCode = e.target.value;
+
+    localStorage.setItem(CURRENT_LANG_KEY, langCode);
     i18n.changeLanguage(langCode);
   };
 
@@ -45,26 +53,14 @@ const Navigation = () => {
               )
             })
           }
-
-          {/* {!isLoggedIn && <div className="ml-auto gap-4 flex">
-          <NavLink
-            to="/login"
-            className="capitalize bg-gray-200 hover:bg-gray-900 text-gray-900 hover:text-white font-bold py-2 px-4 transition"
-          >
-            login
-          </NavLink>
-
-          <NavLink
-            to="/register"
-            className="capitalize bg-teal-500 hover:bg-teal-900 text-white hover:text-white font-bold py-2 px-4 transition"
-          >
-            Sign up
-          </NavLink>
-        </div>} */}
         </nav>
 
         <div className="ml-auto">
-          <select defaultValue={"en"} onChange={onChangeLang}>
+          <select
+            className="border-[3px] bg-white py-2 px-4 focus:outline-none hover:border-zinc-950 cursor-pointer transition-all"
+            defaultValue={lang ? lang : CURRENT_LANG}
+            onChange={onChangeLang}
+          >
             {LANGUAGES.map(({ label, code }) => (
               <option key={code} value={code}>
                 {label}
